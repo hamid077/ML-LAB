@@ -1,0 +1,257 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2636
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier-Bold;\f1\fmodern\fcharset0 Courier;\f2\fmodern\fcharset0 Courier-Oblique;
+}
+{\colortbl;\red255\green255\blue255;\red15\green112\blue1;\red242\green242\blue242;\red25\green25\blue25;
+\red151\green0\blue255;\red7\green64\blue153;\red169\green14\blue26;\red16\green121\blue2;\red51\green110\blue109;
+}
+{\*\expandedcolortbl;;\cssrgb\c0\c50196\c0;\cssrgb\c96078\c96078\c96078;\cssrgb\c12941\c12941\c12941;
+\cssrgb\c66667\c13333\c100000;\cssrgb\c0\c33333\c66667;\cssrgb\c72941\c12941\c12941;\cssrgb\c0\c53333\c0;\cssrgb\c25098\c50196\c50196;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28600\viewh14680\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs26 \cf2 \cb3 \expnd0\expndtw0\kerning0
+import
+\f1\b0 \cf4  matplotlib.pyplot 
+\f0\b \cf2 as
+\f1\b0 \cf4  plt\
+
+\f0\b \cf2 from
+\f1\b0 \cf4  sklearn 
+\f0\b \cf2 import
+\f1\b0 \cf4  datasets\
+
+\f0\b \cf2 from
+\f1\b0 \cf4  sklearn.cluster 
+\f0\b \cf2 import
+\f1\b0 \cf4  KMeans\
+
+\f0\b \cf2 import
+\f1\b0 \cf4  sklearn.metrics 
+\f0\b \cf2 as
+\f1\b0 \cf4  sm\
+
+\f0\b \cf2 import
+\f1\b0 \cf4  pandas 
+\f0\b \cf2 as
+\f1\b0 \cf4  pd\
+
+\f0\b \cf2 import
+\f1\b0 \cf4  numpy 
+\f0\b \cf2 as
+\f1\b0 \cf4  np\
+\
+iris 
+\f0\b \cf5 =
+\f1\b0 \cf4  datasets
+\f0\b \cf5 .
+\f1\b0 \cf4 load_iris\cf6 ()\cf4 \
+\
+X 
+\f0\b \cf5 =
+\f1\b0 \cf4  pd
+\f0\b \cf5 .
+\f1\b0 \cf4 DataFrame\cf6 (\cf4 iris
+\f0\b \cf5 .
+\f1\b0 \cf4 data\cf6 )\cf4 \
+X
+\f0\b \cf5 .
+\f1\b0 \cf4 columns 
+\f0\b \cf5 =
+\f1\b0 \cf4  \cf6 [\cf7 'Sepal_Length'\cf6 ,\cf7 'Sepal_Width'\cf6 ,\cf7 'Petal_Length'\cf6 ,\cf7 'Petal_Width'\cf6 ]\cf4 \
+\
+y 
+\f0\b \cf5 =
+\f1\b0 \cf4  pd
+\f0\b \cf5 .
+\f1\b0 \cf4 DataFrame\cf6 (\cf4 iris
+\f0\b \cf5 .
+\f1\b0 \cf4 target\cf6 )\cf4 \
+y
+\f0\b \cf5 .
+\f1\b0 \cf4 columns 
+\f0\b \cf5 =
+\f1\b0 \cf4  \cf6 [\cf7 'Targets'\cf6 ]\cf4 \
+\
+model 
+\f0\b \cf5 =
+\f1\b0 \cf4  KMeans\cf6 (\cf4 n_clusters
+\f0\b \cf5 =
+\f1\b0 \cf8 3\cf6 )\cf4 \
+model
+\f0\b \cf5 .
+\f1\b0 \cf4 fit\cf6 (\cf4 X\cf6 )\cf4 \
+\
+\
+plt
+\f0\b \cf5 .
+\f1\b0 \cf4 figure\cf6 (\cf4 figsize
+\f0\b \cf5 =
+\f1\b0 \cf6 (\cf8 14\cf6 ,\cf8 7\cf6 ))\cf4 \
+\
+colormap 
+\f0\b \cf5 =
+\f1\b0 \cf4  np
+\f0\b \cf5 .
+\f1\b0 \cf4 array\cf6 ([\cf7 'red'\cf6 ,\cf4  \cf7 'lime'\cf6 ,\cf4  \cf7 'black'\cf6 ])\cf4 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\i \cf9 # Plot the Original Classifications
+\f1\i0 \cf4 \
+plt
+\f0\b \cf5 .
+\f1\b0 \cf4 subplot\cf6 (\cf8 1\cf6 ,\cf4  \cf8 2\cf6 ,\cf4  \cf8 1\cf6 )\cf4 \
+plt
+\f0\b \cf5 .
+\f1\b0 \cf4 scatter\cf6 (\cf4 X
+\f0\b \cf5 .
+\f1\b0 \cf4 Petal_Length\cf6 ,\cf4  X
+\f0\b \cf5 .
+\f1\b0 \cf4 Petal_Width\cf6 ,\cf4  c
+\f0\b \cf5 =
+\f1\b0 \cf4 colormap\cf6 [\cf4 y
+\f0\b \cf5 .
+\f1\b0 \cf4 Targets\cf6 ],\cf4  s
+\f0\b \cf5 =
+\f1\b0 \cf8 40\cf6 )\cf4 \
+plt
+\f0\b \cf5 .
+\f1\b0 \cf4 title\cf6 (\cf7 'Real Classification'\cf6 )\cf4 \
+plt
+\f0\b \cf5 .
+\f1\b0 \cf4 xlabel\cf6 (\cf7 'Petal Length'\cf6 )\cf4 \
+plt
+\f0\b \cf5 .
+\f1\b0 \cf4 ylabel\cf6 (\cf7 'Petal Width'\cf6 )\cf4 \
+\
+\
+
+\f2\i \cf9 # Plot the Models Classifications
+\f1\i0 \cf4 \
+plt
+\f0\b \cf5 .
+\f1\b0 \cf4 subplot\cf6 (\cf8 1\cf6 ,\cf4  \cf8 2\cf6 ,\cf4  \cf8 2\cf6 )\cf4 \
+plt
+\f0\b \cf5 .
+\f1\b0 \cf4 scatter\cf6 (\cf4 X
+\f0\b \cf5 .
+\f1\b0 \cf4 Petal_Length\cf6 ,\cf4  X
+\f0\b \cf5 .
+\f1\b0 \cf4 Petal_Width\cf6 ,\cf4  c
+\f0\b \cf5 =
+\f1\b0 \cf4 colormap\cf6 [\cf4 model
+\f0\b \cf5 .
+\f1\b0 \cf4 labels_\cf6 ],\cf4  s
+\f0\b \cf5 =
+\f1\b0 \cf8 40\cf6 )\cf4 \
+plt
+\f0\b \cf5 .
+\f1\b0 \cf4 title\cf6 (\cf7 'K Mean Classification'\cf6 )\cf4 \
+plt
+\f0\b \cf5 .
+\f1\b0 \cf4 xlabel\cf6 (\cf7 'Petal Length'\cf6 )\cf4 \
+plt
+\f0\b \cf5 .
+\f1\b0 \cf4 ylabel\cf6 (\cf7 'Petal Width'\cf6 )\cf4 \
+print\cf6 (\cf7 'The accuracy score of K-Mean: '\cf6 ,\cf4 sm
+\f0\b \cf5 .
+\f1\b0 \cf4 accuracy_score\cf6 (\cf4 y\cf6 ,\cf4  model
+\f0\b \cf5 .
+\f1\b0 \cf4 labels_\cf6 ))\cf4 \
+print\cf6 (\cf7 'The Confusion matrixof K-Mean: '\cf6 ,\cf4 sm
+\f0\b \cf5 .
+\f1\b0 \cf4 confusion_matrix\cf6 (\cf4 y\cf6 ,\cf4  model
+\f0\b \cf5 .
+\f1\b0 \cf4 labels_\cf6 ))\cf4 \
+\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf2 from
+\f1\b0 \cf4  sklearn 
+\f0\b \cf2 import
+\f1\b0 \cf4  preprocessing\
+scaler 
+\f0\b \cf5 =
+\f1\b0 \cf4  preprocessing
+\f0\b \cf5 .
+\f1\b0 \cf4 StandardScaler\cf6 ()\cf4 \
+scaler
+\f0\b \cf5 .
+\f1\b0 \cf4 fit\cf6 (\cf4 X\cf6 )\cf4 \
+xsa 
+\f0\b \cf5 =
+\f1\b0 \cf4  scaler
+\f0\b \cf5 .
+\f1\b0 \cf4 transform\cf6 (\cf4 X\cf6 )\cf4 \
+xs 
+\f0\b \cf5 =
+\f1\b0 \cf4  pd
+\f0\b \cf5 .
+\f1\b0 \cf4 DataFrame\cf6 (\cf4 xsa\cf6 ,\cf4  columns 
+\f0\b \cf5 =
+\f1\b0 \cf4  X
+\f0\b \cf5 .
+\f1\b0 \cf4 columns\cf6 )\cf4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\i \cf9 #xs.sample(5)
+\f1\i0 \cf4 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf2 from
+\f1\b0 \cf4  sklearn.mixture 
+\f0\b \cf2 import
+\f1\b0 \cf4  GaussianMixture\
+gmm 
+\f0\b \cf5 =
+\f1\b0 \cf4  GaussianMixture\cf6 (\cf4 n_components
+\f0\b \cf5 =
+\f1\b0 \cf8 3\cf6 )\cf4 \
+gmm
+\f0\b \cf5 .
+\f1\b0 \cf4 fit\cf6 (\cf4 xs\cf6 )\cf4 \
+\
+y_gmm 
+\f0\b \cf5 =
+\f1\b0 \cf4  gmm
+\f0\b \cf5 .
+\f1\b0 \cf4 predict\cf6 (\cf4 xs\cf6 )\cf4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\i \cf9 #y_cluster_gmm
+\f1\i0 \cf4 \
+\
+plt
+\f0\b \cf5 .
+\f1\b0 \cf4 subplot\cf6 (\cf8 2\cf6 ,\cf4  \cf8 2\cf6 ,\cf4  \cf8 3\cf6 )\cf4 \
+plt
+\f0\b \cf5 .
+\f1\b0 \cf4 scatter\cf6 (\cf4 X
+\f0\b \cf5 .
+\f1\b0 \cf4 Petal_Length\cf6 ,\cf4  X
+\f0\b \cf5 .
+\f1\b0 \cf4 Petal_Width\cf6 ,\cf4  c
+\f0\b \cf5 =
+\f1\b0 \cf4 colormap\cf6 [\cf4 y_gmm\cf6 ],\cf4  s
+\f0\b \cf5 =
+\f1\b0 \cf8 40\cf6 )\cf4 \
+plt
+\f0\b \cf5 .
+\f1\b0 \cf4 title\cf6 (\cf7 'GMM Classification'\cf6 )\cf4 \
+plt
+\f0\b \cf5 .
+\f1\b0 \cf4 xlabel\cf6 (\cf7 'Petal Length'\cf6 )\cf4 \
+plt
+\f0\b \cf5 .
+\f1\b0 \cf4 ylabel\cf6 (\cf7 'Petal Width'\cf6 )\cf4 \
+\
+print\cf6 (\cf7 'The accuracy score of EM: '\cf6 ,\cf4 sm
+\f0\b \cf5 .
+\f1\b0 \cf4 accuracy_score\cf6 (\cf4 y\cf6 ,\cf4  y_gmm\cf6 ))\cf4 \
+print\cf6 (\cf7 'The Confusion matrix of EM: '\cf6 ,\cf4 sm
+\f0\b \cf5 .
+\f1\b0 \cf4 confusion_matrix\cf6 (\cf4 y\cf6 ,\cf4  y_gmm\cf6 ))}
